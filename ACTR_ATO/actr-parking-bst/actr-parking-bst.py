@@ -39,7 +39,7 @@ visible = False
 #              [22, 200, 32, 114], [14, 200, 37, 112], [15, 250, 55, 125]]
 #
 # no_learn_stims = [[15, 200, 41, 103], [10, 200, 29, 132]]
-test_stim = [[45,310,85,78,75,34,14,15,30]]
+test_stim = [[46, 500, 86, 78, 32, 34, 14, 1, 30]]
 
 
 
@@ -239,5 +239,5 @@ def production_u_value(prod):
 
 
 if __name__ == "__main__":
-    # test(2, human=False)
-    experiment(4, human=False)
+    # test(3, human=False)
+    experiment(3, human=False)

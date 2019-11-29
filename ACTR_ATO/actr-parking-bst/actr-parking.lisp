@@ -1,17 +1,15 @@
-
 (clear-all)
 (require-extra "emma")
-(require-extra "threads")
+;;(require-extra "threads")
 
 (define-model actr-parking
 
 (sgp :v t :esc t :egs 3 :show-focus t :ul t :ult t :needs-mouse t :visual-num-finsts 10 :trace-detail high :emma t :auto-attend t
-:saccade-feat-time 0.00  :saccade-init-time 0.01 :eye-spot-color "yellow" )
+:saccade-feat-time 0.01  :saccade-init-time 0.01 :eye-spot-color "yellow" )
 
 
 (chunk-type try-strategy strategy state)
 (chunk-type encoding a-loc b-loc c-loc  d-loc e-loc f-loc g-loc h-loc goal-loc length over under)
-(chunk-type xiagao word)
 
 (define-chunks
     (goal isa try-strategy state start)
@@ -32,7 +30,8 @@
       buffer   unrequested
   ==>
    =goal>
-      state    find-line)
+      state    find-line
+)
 
 (p find-next-line
    =goal>
@@ -45,7 +44,8 @@
       kind      line
       screen-y  lowest
    =goal>
-      state     looking)
+      state     looking
+)
 
 
 (p attend-line
@@ -206,7 +206,7 @@
       state      attending
    =imaginal>
       isa        encoding
-      c-loc      =c
+      h-loc      =h
       goal-loc   nil
    =visual>
       isa        line
@@ -222,8 +222,7 @@
       state      encode-over
    +visual>
       isa        move-attention
-      screen-pos =c)
-
+      screen-pos =h)
 
 (p encode-over
    =goal>
@@ -241,6 +240,39 @@
       over     =val
    =goal>
       state    choose-strategy)
+
+(p decide-over
+   =goal>
+      isa       try-strategy
+      state     choose-strategy
+      strategy  nil
+   =imaginal>
+      isa       encoding
+      over      =over
+   !eval! (> =over 0)
+  ==>
+   =imaginal>
+   =goal>
+      state     prepare-mouse
+      strategy  over
+   +visual-location>
+      isa       visual-location
+      kind      oval
+      value     "b")
+
+(p force-over
+   =goal>
+      isa       try-strategy
+      state     choose-strategy
+    - strategy  over
+  ==>
+   =goal>
+      state     prepare-mouse
+      strategy  over
+   +visual-location>
+      isa       visual-location
+      kind      oval
+      value     "b")
 
 (p encode-line-current
    =goal>
@@ -263,6 +295,7 @@
       isa        move-attention
       screen-pos =goal-loc)
 
+
 (p calculate-difference
    =goal>
       isa      try-strategy
@@ -275,7 +308,7 @@
       width    =goal-len
   ==>
    !bind! =val (- =current-len =goal-len)
-   !output! (current-len - goal-len is =val and current-len is =current-len and goal-len is =goal-len)
+   !output! (currentlen - goallen is =val and current-len is =current-len and goal-len is =goal-len)
    =imaginal>
       length   =val
    =goal>
@@ -620,39 +653,7 @@
       kind      oval
       value     "reset")
 
-(p decide-over
-   =goal>
-      isa       try-strategy
-      state     choose-strategy
-      strategy  nil
-   =imaginal>
-      isa       encoding
-      under     =under
-      over      =over
-   !eval! (< =over (- =under 25))
-  ==>
-   =imaginal>
-   =goal>
-      state     prepare-mouse
-      strategy  over
-   +visual-location>
-      isa       visual-location
-      kind      oval
-      value     "b")
 
-(p force-over
-   =goal>
-      isa       try-strategy
-      state     choose-strategy
-    - strategy  over
-  ==>
-   =goal>
-      state     prepare-mouse
-      strategy  over
-   +visual-location>
-      isa       visual-location
-      kind      oval
-      value     "b")
 
 (p move-mouse
    =goal>
