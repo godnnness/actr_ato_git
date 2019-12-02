@@ -1,0 +1,102 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Isaac Councill">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>ACT-R/AC: Getting Started</title>
+</head>
+<body text="#000000" bgcolor="#C3A8AA" link="#0000FF" vlink="#551A8B" alink="#0000FF">
+<a NAME="top"></a>
+<center>
+<p><font size=+2>Getting Started</font>
+<br>Comments and corrections to either Isaac Council (igc2@psu.edu) or
+Frank Ritter (fer2@psu.edu)
+<br>revised 16/11/02</center>
+
+<p>
+<hr WIDTH="100%">
+<center>
+<p><a href="main.html">Main</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="interface.html">Using the Interface</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="output.html">Sample Output</a></center>
+
+<p>
+<hr WIDTH="100%">
+<p><font size=+1>What you need to run this model</font>
+<p>&nbsp;&nbsp; a. Unix or Macintosh platform
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This model does not run in Windows, yet.&nbsp;
+This may change soon if Garnet is successfully ported to the Windows environment.
+<p>&nbsp;&nbsp; b. Lisp interpreter
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I use CMUCL 18c on Solaris and Mac Common
+Lisp 4.3 on Macintosh.&nbsp; The only limiting factor on what Lisp you
+can use (that I am aware of) is that it must be able to interface with
+Garnet.
+<p>&nbsp;&nbsp; c. Garnet graphics library
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Go to <a href="http://www-2.cs.cmu.edu/Groups/garnet/">http://www-2.cs.cmu.edu/Groups/garnet/</a>
+for instructions related to obtaining and setting up Garnet.
+<p>&nbsp;&nbsp; d. ACT-R 4.0
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available from <a href="http://act.psy.cmu.edu/ACT-R_4.0/">http://act.psy.cmu.edu/ACT-R_4.0/</a>
+<p>&nbsp;&nbsp; e. The model files
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Here is a list of the ACT-R/A/C files,
+avaliable from <a href="http://ritter.ist.psu.edu/ACT-R_AC/">acs.ist.psu.edu/ACT-R_AC</a>:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub-model.lisp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub-functions.lisp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; script-functions.lisp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overlay.lisp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub-gui.lisp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub-loader.lisp
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The archives ACT-R_AC.tar.gz (for Unix)
+and ACT-R_AC.sit (for Mac) contain all the necessary files.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<p><font size=+1>Configuring the model for your environment</font>
+<p>&nbsp;&nbsp; Before running the model, you must first edit the paths
+in the sub-loader.lisp file. Set the ACT-R 4.0, Garnet, and model directory
+paths to the appropriate values.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<p><font size=+1>To Load</font>
+<p>&nbsp;&nbsp; Load the file sub-loader.lisp from the Lisp listener.&nbsp;
+This will load all of the necessary files and bring up the interface.
+<p>&nbsp;&nbsp; If you are using MCL, load the file using file->load file...
+from the menu or the paddle-y keyboard shortcut.&nbsp; If you are using
+Unix, start lisp from the model directory and type '(load "sub-loader.lisp")'
+at the listener prompt.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<br><a NAME="note"></a>
+<br><font size=+1>Note</font>
+<p>&nbsp;&nbsp; The performance of this program varies greatly depending
+on the Lisp used.&nbsp; As the program is configured primarily for use
+within Solaris/CMUCL, when the model is run within Mac Common Lisp the
+speed of execution drastically reduces the usefulness of the chunk matrix.&nbsp;
+If this is a problem, simply set the check-delay global variable at the
+top of the sub-functions.lisp file to an appropriate value, in seconds
+(such as 0.1 if you want to see it, and 0 if you don't want to see it)
+and reload the model.
+<br>&nbsp;&nbsp; This is also handy for scripting the model (more on how
+to do that in <a href="interface.html">Using the Interface</a>).&nbsp;
+The check-delay variable not only affects the chunk matrix selection delay
+time, but also the check marks that indicate whether the model has made
+a correct or incorrect response.&nbsp; If the model is to be scripted over
+many iterations, setting check-delay to nil will drastically speed up the
+script.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<p>If you experience any problems with loading the model, please
+<br>contact <a href="mailto:igc2@psu.edu">Isaac Councill</a> for assistance.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+<center>
+<p><a href="#top">back to top</a></center>
+
+</body>
+</html>
